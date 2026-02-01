@@ -1,4 +1,4 @@
-import 'package:button/src/baral.dart';
+import 'package:vibrate_button/src/baral.dart';
 
 /// A loading indicator that displays three dots animating in a wave-like pattern.
 ///

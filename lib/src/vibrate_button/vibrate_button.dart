@@ -1,5 +1,5 @@
-import 'package:button/src/baral.dart';
-import 'package:button/src/loading/wavedotes_loading.dart';
+import 'package:vibrate_button/src/baral.dart';
+import 'package:vibrate_button/src/loading/wavedotes_loading.dart';
 
 /// A customizable button widget that vibrates (shakes) horizontally when form validation fails.
 /// 
