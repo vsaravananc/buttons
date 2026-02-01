@@ -1,4 +1,4 @@
-# Button
+# VibrateButton
 
 <p align="center">
   <img src="https://img.shields.io/pub/v/github/your-github/button?style=flat-square&label=pub.dev+version" alt="Pub Version">
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-A premium, interactive Flutter button package featuring validation-triggered shake animations and a smooth wave-based loading indicator. Built for developers who need polished, responsive UI feedback without the boilerplate.
+A premium, interactive Flutter Vibrate button package featuring validation-triggered shake animations and a smooth wave-based loading indicator. Built for developers who need polished, responsive UI feedback without the boilerplate.
 </p>
 
 ---
@@ -53,13 +53,13 @@ A premium, interactive Flutter button package featuring validation-triggered sha
 
 ## Installation
 
-Add `button` to your project's `pubspec.yaml` dependencies:
+Add `vibrate_button` to your project's `pubspec.yaml` dependencies:
 
 ```yaml
 dependencies:
   flutter:
     sdk: flutter
-  button: ^0.0.1          # Use the latest published version
+  vibrate_button: ^0.0.1          # Use the latest published version
 ```
 
 Run the following command to fetch the dependency:
@@ -73,7 +73,7 @@ flutter pub get
 ## Quick Start
 
 ```dart
-import 'package:button/button.dart';
+import 'package:vibrate_button/vibrate_button.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -332,10 +332,10 @@ VibrateButton(
 
 Contributions are welcome and appreciated. Here is how to get started:
 
-1. **Fork** the [repository](https://github.com/vsaravananc/buttons) and clone your fork locally:
+1. **Fork** the [repository](https://github.com/vsaravananc/vibrate_button) and clone your fork locally:
    ```bash
-   git clone https://github.com/your-username/buttons.git
-   cd buttons
+   git clone https://github.com/your-username/vibrate_button.git
+   cd vibrate_button
    ```
 2. Create a **feature branch** from `main`:
    ```bash
@@ -349,15 +349,15 @@ Contributions are welcome and appreciated. Here is how to get started:
    ```bash
    dart analyze
    ```
-5. Push your branch and **open a Pull Request** [here](https://github.com/vsaravananc/buttons/pulls) against `main` with a clear description of your changes.
+5. Push your branch and **open a Pull Request** [here](https://github.com/vsaravananc/vibrate_button/pulls) against `main` with a clear description of your changes.
 
 Please follow Dart and Flutter coding conventions and include tests for any new functionality.
 
-> **Found a bug?** File an issue [here](https://github.com/vsaravananc/buttons/issues/new).
+> **Found a bug?** File an issue [here](https://github.com/vsaravananc/vibrate_button/issues/new).
 
 
 ## License
 
 This package is distributed under the **MIT License**.
 
-See the [LICENSE](LICENSE) file for the full text.
+See the [LICENSE](https://github.com/vsaravananc/vibrate_button/blob/main/LICENSE) file for the full text.
