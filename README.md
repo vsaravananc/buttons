@@ -332,9 +332,9 @@ VibrateButton(
 
 Contributions are welcome and appreciated. Here is how to get started:
 
-1. **Fork** the [repository](https://github.com/vsaravananc/vibrate_button) and clone your fork locally:
+1. **Fork** the [repository](https://github.com/vsaravananc/button) and clone your fork locally:
    ```bash
-   git clone https://github.com/your-username/vibrate_button.git
+   git clone https://github.com/your-username/button.git
    cd vibrate_button
    ```
 2. Create a **feature branch** from `main`:
@@ -349,15 +349,15 @@ Contributions are welcome and appreciated. Here is how to get started:
    ```bash
    dart analyze
    ```
-5. Push your branch and **open a Pull Request** [here](https://github.com/vsaravananc/vibrate_button/pulls) against `main` with a clear description of your changes.
+5. Push your branch and **open a Pull Request** [here](https://github.com/vsaravananc/button/pulls) against `main` with a clear description of your changes.
 
 Please follow Dart and Flutter coding conventions and include tests for any new functionality.
 
-> **Found a bug?** File an issue [here](https://github.com/vsaravananc/vibrate_button/issues/new).
+> **Found a bug?** File an issue [here](https://github.com/vsaravananc/button/issues/new).
 
 
 ## License
 
 This package is distributed under the **MIT License**.
 
-See the [LICENSE](https://github.com/vsaravananc/vibrate_button/blob/main/LICENSE) file for the full text.
+See the [LICENSE](https://github.com/vsaravananc/button/blob/main/LICENSE) file for the full text.
