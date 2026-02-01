@@ -96,7 +96,7 @@ class VibrateButton extends StatefulWidget {
 
   /// The margin around the button.
   /// 
-  /// Defaults to symmetric horizontal margin of 4.
+  /// Defaults to symmetric horizontal margin of 0.
   final EdgeInsetsGeometry margin;
 
   /// Creates a [VibrateButton].
@@ -120,7 +120,7 @@ class VibrateButton extends StatefulWidget {
     this.radius = 8,
     required this.onTap,
     required this.formState,
-    this.margin = const EdgeInsets.symmetric(horizontal: 4),
+    this.margin = const EdgeInsets.symmetric(horizontal: 0),
   })  : assert(
           color == null || decoration == null,
           'Cannot provide both a color and a decoration',
@@ -225,7 +225,7 @@ class _VibrateButtonState extends State<VibrateButton>
               decoration: decoration,
               child: Center(
                 child: widget.loading
-                    ? const LoadingAnimationWaveDotes()
+                    ? const WaveDotesLoadingAnimation()
                     : child,
               ),
             ),
