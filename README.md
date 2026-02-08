@@ -16,7 +16,7 @@ A premium, interactive Flutter Vibrate button package featuring validation-trigg
 
 ## Demo
 
- ![App Demo](https://github.com/vsaravananc/buttons/video/validate_button.gif)
+ ![App Demo](https://github.com/vsaravananc/buttons/blob/Main/video/validate_button.gif)
 
 ---
 
