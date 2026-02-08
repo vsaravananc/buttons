@@ -1,5 +1,5 @@
 name: vibrate_button
-version: 0.0.1
+version: 0.0.2
 description: A premium, interactive Flutter vibrate button package featuring validation-triggered shake animations and a smooth wave-based loading indicator.
 homepage: https://github.com/vsaravananc/buttons
 repository: https://github.com/vsaravananc/buttons

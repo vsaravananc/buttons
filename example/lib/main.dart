@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vibrate_button/vibrate_button.dart';
 void main() {
   runApp(const MyApp());
 }
