@@ -1,3 +1,7 @@
+## 0.0.3
+### Modified
+* Updated documentation for better clarity and improved usage guidance.
+
 ## 0.0.2
 ### Added
 * Demo GIF showcasing `VibrateButton` functionality and shake animation behavior.

@@ -340,7 +340,7 @@ Contributions are welcome and appreciated. Here is how to get started:
 
 1. **Fork** the [repository](https://github.com/vsaravananc/buttons) and clone your fork locally:
    ```bash
-   git clone https://github.com/your-username/buttons.git
+   git clone https://github.com/vsaravananc/buttons.git
    cd vibrate_button
    ```
 2. Create a **feature branch** from `main`:
