@@ -177,6 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                       radius: 12,
                       height: 54,
                       color: Colors.deepPurple,
+                      vibrateImpact: .heavyImpact,
                       textStyle: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,

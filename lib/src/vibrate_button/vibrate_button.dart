@@ -1,16 +1,19 @@
+import 'package:flutter/services.dart';
 import 'package:vibrate_button/src/baral.dart';
 import 'package:vibrate_button/src/loading/wavedotes_loading.dart';
+import 'package:vibrate_button/src/system_haptic/system_haptic.dart';
+import 'package:vibrate_button/src/system_haptic/system_haptic_enum.dart';
 
 /// A customizable button widget that vibrates (shakes) horizontally when form validation fails.
-/// 
+///
 /// This button integrates with Flutter's form validation system and provides visual feedback
 /// through a shake animation when validation fails. It also supports a loading state with
 /// an animated indicator.
-/// 
+///
 /// Example:
 /// ```dart
 /// final formKey = GlobalKey<FormState>();
-/// 
+///
 /// VibrateButton(
 ///   loading: isLoading,
 ///   formState: formKey,
@@ -22,72 +25,72 @@ import 'package:vibrate_button/src/loading/wavedotes_loading.dart';
 /// ```
 class VibrateButton extends StatefulWidget {
   /// Whether the button is in a loading state.
-  /// 
+  ///
   /// When true, displays [LoadingAnimationWaveDotes] instead of the child/text
   /// and prevents user interaction.
   final bool loading;
 
   /// The form state key used for validation.
-  /// 
+  ///
   /// When the button is tapped, it validates the form. If validation fails,
   /// the button shakes. If validation passes, [onTap] is called.
   final GlobalKey<FormState> formState;
 
   /// The height of the button.
-  /// 
+  ///
   /// Defaults to 45.
   final double height;
 
   /// The width of the button.
-  /// 
+  ///
   /// If null, the button will expand to fit its parent's constraints.
   final double? width;
 
   /// The background color of the button.
-  /// 
+  ///
   /// Cannot be provided if [decoration] is also provided.
   /// Defaults to the theme's primary color if both [color] and [decoration] are null.
   final Color? color;
 
   /// Custom decoration for the button container.
-  /// 
+  ///
   /// Cannot be provided if [color] is also provided.
   /// If null, a default [BoxDecoration] with [color] and [radius] is used.
   final Decoration? decoration;
 
   /// The maximum distance in pixels the button moves during the shake animation.
-  /// 
+  ///
   /// Defaults to 12.
   final double movePixels;
 
   /// The number of complete shake cycles during the animation.
-  /// 
+  ///
   /// Defaults to 4.
   final double shakeCount;
 
   /// The duration of the shake animation.
-  /// 
+  ///
   /// Defaults to 450 milliseconds.
   final Duration duration;
 
   /// The border radius of the button.
-  /// 
+  ///
   /// Only used when [decoration] is not provided.
   /// Defaults to 8.
   final double radius;
 
   /// The text to display on the button.
-  /// 
+  ///
   /// Either [text] or [child] must be provided, but not both.
   final String? text;
 
   /// The text style for the button text.
-  /// 
+  ///
   /// If null, uses the theme's titleLarge text style with onPrimary color.
   final TextStyle? textStyle;
 
   /// Custom child widget to display on the button.
-  /// 
+  ///
   /// Either [text] or [child] must be provided, but not both.
   final Widget? child;
 
@@ -95,12 +98,24 @@ class VibrateButton extends StatefulWidget {
   final VoidCallback onTap;
 
   /// The margin around the button.
-  /// 
+  ///
   /// Defaults to symmetric horizontal margin of 0.
   final EdgeInsetsGeometry margin;
 
+  /// The haptic feedback style played when validation fails.
+  ///
+  /// When set to `null`, no haptic feedback is triggered.
+  /// Provide a [SystemHapticEnum] value to choose the intensity
+  /// of the vibration pattern.
+  ///
+  /// Example:
+  /// ```dart
+  /// vibrateImpact: SystemHapticEnum.lightImpact,
+  ///
+  final SystemHapticEnum? vibrateImpact;
+
   /// Creates a [VibrateButton].
-  /// 
+  ///
   /// The [loading], [onTap], and [formState] parameters are required.
   /// Either [text] or [child] must be provided.
   /// [color] and [decoration] cannot both be provided.
@@ -121,6 +136,7 @@ class VibrateButton extends StatefulWidget {
     required this.onTap,
     required this.formState,
     this.margin = const EdgeInsets.symmetric(horizontal: 0),
+    this.vibrateImpact,
   })  : assert(
           color == null || decoration == null,
           'Cannot provide both a color and a decoration',
@@ -156,30 +172,39 @@ class _VibrateButtonState extends State<VibrateButton>
     super.dispose();
   }
 
-  /// Handles button tap events.
-  /// 
-  /// If [loading] is true, the tap is ignored.
-  /// If form validation passes, calls [onTap].
-  /// If form validation fails, triggers the shake animation.
-  void _onTap() {
+  /// Called when the button is pressed.
+  ///
+  /// Ignores the tap entirely if [loading] is `true`.
+  ///
+  /// On validation success, invokes [onTap].
+  ///
+  /// On validation failure:
+  /// - Triggers haptic feedback if [vibrateImpact] is set.
+  /// - Plays the shake animation via [_controller].
+  void _onTap() async {
     if (widget.loading) return;
 
     if (widget.formState.currentState?.validate() ?? false) {
       widget.onTap();
     } else {
+      if (widget.vibrateImpact != null)
+        await SystemChannels.platform.invokeMethod<void>(
+          'HapticFeedback.vibrate',
+          'HapticFeedbackType.heavyImpact',
+        );
       _controller.forward().then((_) => _controller.reset());
     }
   }
 
   /// Calculates the horizontal offset for the shake animation.
-  /// 
+  ///
   /// Uses a sine wave function to create a smooth oscillating motion.
-  /// 
+  ///
   /// Parameters:
   /// - [t]: Animation progress value between 0.0 and 1.0
   /// - [shakeCount]: Number of complete oscillations
   /// - [movePixels]: Maximum displacement in pixels
-  /// 
+  ///
   /// Returns the horizontal offset value.
   double _shakeCal(double t, double shakeCount, double movePixels) {
     return sin(t * 1 * pi * shakeCount) * movePixels;
@@ -224,9 +249,8 @@ class _VibrateButtonState extends State<VibrateButton>
               width: widget.width,
               decoration: decoration,
               child: Center(
-                child: widget.loading
-                    ? const WaveDotesLoadingAnimation()
-                    : child,
+                child:
+                    widget.loading ? const WaveDotesLoadingAnimation() : child,
               ),
             ),
           ),
